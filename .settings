@@ -54,6 +54,10 @@
                 "format": "![imageName](imageLink)"
             },
             {
+                "name": "Markdown Text",
+                "format": "[imageName](imageLink)"
+            },
+            {
                 "name": "HTML",
                 "format": "<img src=\"imageLink\" alt=\"imageName\" />"
             },
