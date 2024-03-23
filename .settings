@@ -59,7 +59,7 @@
             },
             {
                 "name": "Markdown Text (URL)",
-                "format": "[imageName](imageLink) : \`imageLink\`"
+                "format": "[imageName](imageLink) : `imageLink`"
             },
             {
                 "name": "HTML",
