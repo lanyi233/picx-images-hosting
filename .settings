@@ -58,8 +58,8 @@
                 "format": "[imageName](imageLink)"
             },
             {
-                "name": "Markdown Text（URL）",
-                "format": "[imageName（imageLink）](imageLink)"
+                "name": "Markdown Text (URL)",
+                "format": "[imageName](imageLink) : \`imageLink\`"
             },
             {
                 "name": "HTML",
