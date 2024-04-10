@@ -63,7 +63,7 @@
                         const img = document.createElement('img');
                         img.src = image;
                         const button = document.createElement('button');
-                        button.innerText = '复制链接';
+                        button.innerText = 'Copy';
                         button.onclick = function() {
                             navigator.clipboard.writeText(image).then(() => {
                                 alert('链接已复制: ' + image);
