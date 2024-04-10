@@ -5,67 +5,65 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Picx</title>
         <style>
-            body {
-                font-family: 'Arial', sans-serif;
-                background-color: #f7f7f7;
-                text-align: center;
-                padding-top: 50px;
-                color: #333;
-            }
-            .gallery {
-                display: flex;
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-            .image-container {
-                position: relative; /* 相对定位作为子元素的参照 */
-                margin: 10px;
-                background: #fff;
-                padding: 10px;
-                box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-                border-radius: 10px;
-                width: 100%; /* 自适应容器宽度 */
-                max-width: 550px; /* 最大宽度 */
-                height: auto; /* 高度自动 */
-            }
-            img {
-                max-width: 100%; /* 图片最大宽度为容器宽度 */
-                max-height: 200px; /* 图片最大高度 */
-                object-fit: contain;
-                width: auto; /* 宽度自适应保持图片比例 */
-                height: auto; /* 高度自适应保持图片比例 */
-                margin-right: auto; /* 将图片推到左边 */
-                border-radius: 5px;
-            }
-            .image-path {
-                position: absolute; /* 绝对定位 */
-                top: 10px; /* 顶部位置 */
-                right: 10px; /* 右侧位置 */
-                color: #666;
-                font-size: 10px;
-                background: rgba(255, 255, 255, 0.7); /* 背景半透明 */
-                padding: 2px 8px;
-                border-radius: 5px;
-                white-space: nowrap;
-                overflow: hidden;
-                text-overflow: ellipsis;
-            }
-            button {
-                position: absolute; /* 绝对定位 */
-                bottom: 10px; /* 底部位置 */
-                right: 10px; /* 右侧位置 */
-                z-index: 10;
-                background-color: #00000000;
-                color: #000000;
-                border: none;
-                padding: 10px 20px;
-                text-align: center;
-                text-decoration: none;
-                font-size: 14px;
-                margin: 10px 2px;
-                cursor: pointer;
-                border-radius: 5px;
-                transition: background-color 0.3s;
+           body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f7f7f7;
+            text-align: center;
+            padding-top: 50px;
+            color: #333;
+        }
+        .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .image-container {
+            position: relative; /* 相对定位作为子元素的参照 */
+            margin: 10px;
+            background: #fff;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            border-radius: 10px;
+            width: 100%; /* 自适应容器宽度 */
+            max-width: 550px; /* 最大宽度 */
+            display: flex; /* 使用flex布局进行子项排列 */
+            align-items: center; /* 垂直居中对齐 */
+        }
+        img {
+            max-width: 200px; /* 图片最大宽度 */
+            max-height: 200px; /* 图片最大高度 */
+            width: auto; /* 宽度自适应保持图片比例 */
+            height: auto; /* 高度自适应保持图片比例 */
+            object-fit: contain;
+            margin-right: auto; /* 将图片推到左边 */
+            border-radius: 5px;
+        }
+        .image-path {
+            position: absolute; /* 绝对定位 */
+            top: 10px; /* 顶部位置 */
+            right: 10px; /* 右侧位置 */
+            color: #666;
+            font-size: 10px;
+            background: rgba(255, 255, 255, 0.7); /* 背景半透明 */
+            padding: 2px 8px;
+            border-radius: 5px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        button {
+            position: absolute; /* 绝对定位 */
+            bottom: 10px; /* 底部位置 */
+            right: 10px; /* 右侧位置 */
+            background-color: #00000000;
+            color: #000000;
+            border: none;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            font-size: 14px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s;
         }
         button:hover {
                 background-color: #0056b3;
@@ -76,7 +74,6 @@
         <h1>图片预览</h1>
         <h3 id="domain"></h3>
         <div class="gallery"></div>
-        
         <script type="text/javascript" src="/r/punycode.js"></script>
         <script type="text/javascript">
         function fetchImages() {
