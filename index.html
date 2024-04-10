@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>picx</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f7f7f7;
+            text-align: center;
+            padding-top: 50px;
+            color: #333;
+        }
+        .gallery{
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .image-container {
+            margin: 10px;
+            background: #fff;
+            padding: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            border-radius: 10px;
+        }
+        img {
+            max-width: 200px;
+            border-radius: 5px;
+        }
+        button {
+            background-color: #06f;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            font-size: 14px;
+            margin: 10px 2px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h1>图片预览</h1>
+    <div class="gallery"></div>
+
+    <script>
+        function fetchImages() {
+            fetch('./list.json')
+                .then(response => response.json())
+                .then(images => {
+                    const gallery = document.querySelector('.gallery');
+                    gallery.innerHTML = ''; // 清空画廊
+                    images.forEach(image => {
+                        const container = document.createElement('div');
+                        container.className = 'image-container';
+                        const img = document.createElement('img');
+                        img.src = image;
+                        const button = document.createElement('button');
+                        button.innerText = '复制链接';
+                        button.onclick = function() {
+                            navigator.clipboard.writeText(image).then(() => {
+                                alert('链接已复制: ' + image);
+                            });
+                        };
+                        container.appendChild(img);
+                        container.appendChild(button);
+                        gallery.appendChild(container);
+                    });
+                })
+                .catch(error => {
+                    console.error('加载图片列表发生错误:', error);
+                });
+        }
+
+        fetchImages(); // 页面加载时运行
+    </script>
+</body>
+</html>
