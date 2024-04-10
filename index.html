@@ -144,10 +144,10 @@
             // 转换punycode到unicode
             var unicodeDomain = punycode.toUnicode(asciiDomain);
             // 将转换后的unicode域名显示在页面上
-            document.getElementById('converted-domain').textContent = unicodeDomain;
+            document.getElementById('domain').textContent = unicodeDomain;
         } else {
             // 如果域名不含特殊字符，则直接显示
-            document.getElementById('converted-domain').textContent = asciiDomain;
+            document.getElementById('domain').textContent = asciiDomain;
         }
     })();
         fetchImages();
