@@ -72,19 +72,19 @@
                                 alert('链接已复制: ' + window.location.origin + '/' + image);
                             });
                         };
-//                       // 下载按钮
-//                       const downloadButton = document.createElement('button');
-//                       const downloadIcon = document.createElement('img'); // 创建图标元素 for download
-//                       downloadIcon.src = '/icon/download.svg'; // 设置下载图标路径
-//                       downloadButton.appendChild(downloadIcon); // 把图标添加到下载按钮中
-//                       downloadButton.onclick = function() {
-//                           const link = document.createElement('a');
-//                           link.href = window.location.origin + '/' + image;
-//                           link.download = '';
-//                           document.body.appendChild(link);
-//                           link.click();
-//                           document.body.removeChild(link);
-//                       };
+                        // 下载按钮
+                        const downloadButton = document.createElement('button');
+                        const downloadIcon = document.createElement('img'); // 创建图标元素 for download
+                        downloadIcon.src = '/icon/download.svg'; // 设置下载图标路径
+                        downloadButton.appendChild(downloadIcon); // 把图标添加到下载按钮中
+                        downloadButton.onclick = function() {
+                            const link = document.createElement('a');
+                            link.href = window.location.origin + '/' + image;
+                            link.download = '';
+                            document.body.appendChild(link);
+                            link.click();
+                            document.body.removeChild(link);
+                        };
                         container.appendChild(img);
                         container.appendChild(copyButton);
                         container.appendChild(downloadButton);
