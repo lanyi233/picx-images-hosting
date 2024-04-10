@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>picx</title>
+        <title>Picx</title>
         <style>
         body {
             font-family: 'Arial', sans-serif;
@@ -59,59 +59,62 @@
     </head>
     <body>
         <h1>图片预览</h1>
+        <h3>domain</h3>
         <div class="gallery"></div>
-<script>
-function fetchImages() {
-    fetch('/list.json')
-        .then(response => response.json())
-        .then(images => {
-            const gallery = document.querySelector('.gallery');
-            gallery.innerHTML = ''; // 清空画廊
-            images.forEach(image => {
-                const container = document.createElement('div');
-                container.className = 'image-container';
-                const img = document.createElement('img');
-                img.src = window.location.origin + '/' + image;
-                // 图片路径的文本显示
-                const imagePath = document.createElement('div');
-                imagePath.textContent = image;  // 只显示图片的相对路径
-                imagePath.className = 'image-path';
-                // 复制按钮
-                const copyButton = document.createElement('button');
-                const copyIcon = document.createElement('img'); // 创建图标元素 for copy
-                copyIcon.src = '/icon/copy_2.svg'; // 设置图标路径
-                copyButton.appendChild(copyIcon); // 把图标添加到复制按钮中
-                copyButton.onclick = function() {
-                    navigator.clipboard.writeText(img.src).then(() => {
-                        alert('链接已复制: ' + img.src);
+        <script>
+        document.getElementById("domain").textContent = window.location.origin;
+        
+        function fetchImages() {
+            fetch('/list.json')
+                .then(response => response.json())
+                .then(images => {
+                    const gallery = document.querySelector('.gallery');
+                    gallery.innerHTML = ''; // 清空画廊
+                    images.forEach(image => {
+                        const container = document.createElement('div');
+                        container.className = 'image-container';
+                        const img = document.createElement('img');
+                        img.src = window.location.origin + '/' + image;
+                        // 图片路径的文本显示
+                        const imagePath = document.createElement('div');
+                        imagePath.textContent = image;  // 只显示图片的相对路径
+                        imagePath.className = 'image-path';
+                        // 复制按钮
+                        const copyButton = document.createElement('button');
+                        const copyIcon = document.createElement('img'); // 创建图标元素 for copy
+                        copyIcon.src = '/icon/copy_2.svg'; // 设置图标路径
+                        copyButton.appendChild(copyIcon); // 把图标添加到复制按钮中
+                        copyButton.onclick = function() {
+                            navigator.clipboard.writeText(img.src).then(() => {
+                                alert('链接已复制: ' + img.src);
+                            });
+                        };
+                        // 下载按钮
+                        // const downloadButton = document.createElement('button');
+                        // const downloadIcon = document.createElement('img'); // 创建图标元素 for download
+                        // downloadIcon.src = '/icon/download.svg'; // 设置下载图标路径
+                        // downloadButton.appendChild(downloadIcon); // 把图标添加到下载按钮中
+                        // downloadButton.onclick = function() {
+                            // const link = document.createElement('div');
+                            // link.href = img.src;
+                            // link.download = '';
+                            // document.body.appendChild(link);
+                            // link.click();
+                            // document.body.removeChild(link);
+                        // };
+                        // 将元素添加到 container 中
+                        container.appendChild(img);
+                        container.appendChild(imagePath); // 添加图片路径
+                        container.appendChild(copyButton);
+                        // container.appendChild(downloadButton);
+                        gallery.appendChild(container);
                     });
-                };
-                // 下载按钮
-                // const downloadButton = document.createElement('button');
-                // const downloadIcon = document.createElement('img'); // 创建图标元素 for download
-                // downloadIcon.src = '/icon/download.svg'; // 设置下载图标路径
-                // downloadButton.appendChild(downloadIcon); // 把图标添加到下载按钮中
-                // downloadButton.onclick = function() {
-                    // const link = document.createElement('div');
-                    // link.href = img.src;
-                    // link.download = '';
-                    // document.body.appendChild(link);
-                    // link.click();
-                    // document.body.removeChild(link);
-                // };
-                // 将元素添加到 container 中
-                container.appendChild(img);
-                container.appendChild(imagePath); // 添加图片路径
-                container.appendChild(copyButton);
-                // container.appendChild(downloadButton);
-                gallery.appendChild(container);
-            });
-        })
-        .catch(error => {
-            console.error('加载图片列表发生错误:', error);
-        });
-}
-fetchImages();
+                })
+                .catch(error => {
+                    console.error('加载图片列表发生错误:', error);
+                });
+        }
+        fetchImages();
 </script>
     </body>
 </html>
