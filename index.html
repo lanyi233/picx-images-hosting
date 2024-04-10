@@ -87,23 +87,23 @@ function fetchImages() {
                     });
                 };
                 // 下载按钮
-                const downloadButton = document.createElement('button');
-                const downloadIcon = document.createElement('img'); // 创建图标元素 for download
-                downloadIcon.src = '/icon/download.svg'; // 设置下载图标路径
-                downloadButton.appendChild(downloadIcon); // 把图标添加到下载按钮中
-                downloadButton.onclick = function() {
-                    const link = document.createElement('div');
-                    link.href = img.src;
-                    link.download = '';
-                    document.body.appendChild(link);
-                    link.click();
-                    document.body.removeChild(link);
-                };
+                // const downloadButton = document.createElement('button');
+                // const downloadIcon = document.createElement('img'); // 创建图标元素 for download
+                // downloadIcon.src = '/icon/download.svg'; // 设置下载图标路径
+                // downloadButton.appendChild(downloadIcon); // 把图标添加到下载按钮中
+                // downloadButton.onclick = function() {
+                    // const link = document.createElement('div');
+                    // link.href = img.src;
+                    // link.download = '';
+                    // document.body.appendChild(link);
+                    // link.click();
+                    // document.body.removeChild(link);
+                // };
                 // 将元素添加到 container 中
                 container.appendChild(img);
                 container.appendChild(imagePath); // 添加图片路径
                 container.appendChild(copyButton);
-                container.appendChild(downloadButton);
+                // container.appendChild(downloadButton);
                 gallery.appendChild(container);
             });
         })
