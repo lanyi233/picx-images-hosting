@@ -32,38 +32,43 @@
                 max-width: 100%; /* 图片最大宽度为容器宽度 */
                 max-height: 200px; /* 图片最大高度 */
                 object-fit: contain;
+                width: auto; /* 宽度自适应保持图片比例 */
+                height: auto; /* 高度自适应保持图片比例 */
+                margin-right: auto; /* 将图片推到左边 */
                 border-radius: 5px;
             }
             .image-path {
                 position: absolute; /* 绝对定位 */
                 top: 10px; /* 顶部位置 */
                 right: 10px; /* 右侧位置 */
-                z-index: 10;
                 color: #666;
                 font-size: 10px;
-                background: rgba(255, 255, 255, 0.5); /* 背景半透明 */
+                background: rgba(255, 255, 255, 0.7); /* 背景半透明 */
                 padding: 2px 8px;
                 border-radius: 5px;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
             }
             button {
                 position: absolute; /* 绝对定位 */
                 bottom: 10px; /* 底部位置 */
                 right: 10px; /* 右侧位置 */
                 z-index: 10;
-            background-color: #00000000;
-            color: #000000;
-            border: none;
-            padding: 10px 20px;
-            text-align: center;
-            text-decoration: none;
-            font-size: 14px;
-            margin: 10px 2px;
-            cursor: pointer;
-            border-radius: 5px;
-            transition: background-color 0.3s;
+                background-color: #00000000;
+                color: #000000;
+                border: none;
+                padding: 10px 20px;
+                text-align: center;
+                text-decoration: none;
+                font-size: 14px;
+                margin: 10px 2px;
+                cursor: pointer;
+                border-radius: 5px;
+                transition: background-color 0.3s;
         }
         button:hover {
-            background-color: #0056b3;
+                background-color: #0056b3;
         }
     </style>
     </head>
