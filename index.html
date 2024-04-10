@@ -5,50 +5,51 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Picx</title>
         <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            background-color: #f7f7f7;
-            text-align: center;
-            padding-top: 50px;
-            color: #333;
-        }
-        .gallery{
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-        .image-container {
-            margin: 10px;
-            background: #fff;
-            padding: 10px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            border-radius: 10px;
-            width: 550px; /* 容器宽度包括填充和边距 */
-            height: 250px; /* 容器高度包括填充和边距 */
-            display: flex; /* 使用flex布局 */
-            justify-content: center; /* 水平居中 */
-            align-items: center; /* 垂直居中 */
-        }
-        img {
-            max-width: 200px; /* 最大宽度为200px */
-            max-height: 200px; /* 最大高度为200px */
-            width: auto; /* 宽度自适应 */
-            height: auto; /* 高度自适应 */
-            object-fit: contain; /* 不剪裁图片，保持图片的全部可见 */
-            border-radius: 5px;
-        }
-        /* CSS 中的新类样式 */
-        .image-path {
-            text-align: middle; /* 左对齐 */
-            color: #666; /* 字体颜色 */
-            font-size: 10px; /* 字体大小 */
-            padding: 4px 0; /* 添加一些上下间距 */
-            overflow: hidden; /* 隐藏过长的文本 */
-            text-overflow: ellipsis; /* 使用省略号表示文本溢出 */
-            white-space: nowrap; /* 不允许文本换行 */
-            max-width: 200px; /* 设置一个最大宽度 */
-        }
-        button {
+            body {
+                font-family: 'Arial', sans-serif;
+                background-color: #f7f7f7;
+                text-align: center;
+                padding-top: 50px;
+                color: #333;
+            }
+            .gallery {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            .image-container {
+                position: relative; /* 相对定位作为子元素的参照 */
+                margin: 10px;
+                background: #fff;
+                padding: 10px;
+                box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+                border-radius: 10px;
+                width: 100%; /* 自适应容器宽度 */
+                max-width: 550px; /* 最大宽度 */
+                height: auto; /* 高度自动 */
+            }
+            img {
+                max-width: 100%; /* 图片最大宽度为容器宽度 */
+                max-height: 200px; /* 图片最大高度 */
+                object-fit: contain;
+                border-radius: 5px;
+            }
+            .image-path {
+                position: absolute; /* 绝对定位 */
+                top: 10px; /* 顶部位置 */
+                right: 10px; /* 右侧位置 */
+                z-index: 10;
+                color: #666;
+                font-size: 10px;
+                background: rgba(255, 255, 255, 0.5); /* 背景半透明 */
+                padding: 2px 8px;
+                border-radius: 5px;
+            }
+            button {
+                position: absolute; /* 绝对定位 */
+                bottom: 10px; /* 底部位置 */
+                right: 10px; /* 右侧位置 */
+                z-index: 10;
             background-color: #00000000;
             color: #000000;
             border: none;
