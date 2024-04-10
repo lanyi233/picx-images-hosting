@@ -51,35 +51,36 @@
     <div class="gallery"></div>
 
     <script>
-        function fetchImages() {
-            fetch('./list.json')
-                .then(response => response.json())
-                .then(images => {
-                    const gallery = document.querySelector('.gallery');
-                    gallery.innerHTML = ''; // 清空画廊
-                    images.forEach(image => {
-                        const container = document.createElement('div');
-                        container.className = 'image-container';
-                        const img = document.createElement('img');
-                        img.src = image;
-                        const button = document.createElement('button');
-                        button.innerText = 'Copy';
-                        button.onclick = function() {
-                            navigator.clipboard.writeText(image).then(() => {
-                                alert('链接已复制: ' + image);
-                            });
-                        };
-                        container.appendChild(img);
-                        container.appendChild(button);
-                        gallery.appendChild(container);
-                    });
-                })
-                .catch(error => {
-                    console.error('加载图片列表发生错误:', error);
+    function fetchImages() {
+        fetch('/list.json')
+            .then(response => response.json())
+            .then(images => {
+                const gallery = document.querySelector('.gallery');
+                gallery.innerHTML = ''; // 清空画廊
+                images.forEach(image => {
+                    const container = document.createElement('div');
+                    container.className = 'image-container';
+                    const img = document.createElement('img');
+                    // 使用当前域名和路径
+                    img.src = window.location.origin + '/' + image;
+                    const button = document.createElement('button');
+                    button.innerText = 'Copy';
+                    button.onclick = function() {
+                        navigator.clipboard.writeText(window.location.origin + '/' + image).then(() => {
+                            alert('链接已复制: ' + window.location.origin + '/' + image);
+                        });
+                    };
+                    container.appendChild(img);
+                    container.appendChild(button);
+                    gallery.appendChild(container);
                 });
-        }
-
-        fetchImages(); // 页面加载时运行
+            })
+            .catch(error => {
+                console.error('加载图片列表发生错误:', error);
+            });
+    }
+    
+    fetchImages(); // 页面加载时运行
     </script>
 </body>
 </html>
