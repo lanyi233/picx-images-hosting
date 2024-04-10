@@ -111,9 +111,9 @@
                 .catch(error => {
                     console.error('加载图片列表发生错误:', error);
                 });
+                document.querySelector('domain').textContent = window.location.hostname;
         }
         fetchImages();
-        document.querySelector('domain').textContent = window.location.hostname;
     </script>
     </body>
 </html>
