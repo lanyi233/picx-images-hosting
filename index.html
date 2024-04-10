@@ -112,7 +112,11 @@
                     console.error('加载图片列表发生错误:', error);
                 });
         }
-        fetchImages();
+        document.addEventListener('DOMContentLoaded', function() {
+        document.getElementById('domain').textContent = window.location.hostname;
+        fetchImages(); // 调用fetchImages函数
+    });
+        // fetchImages();
     </script>
     </body>
 </html>
