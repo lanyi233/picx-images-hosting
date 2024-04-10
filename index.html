@@ -68,7 +68,6 @@
                     gallery.innerHTML = ''; // 清空画廊
                     images.forEach(image => {
                         const imagePath = document.createElement('div');
-                        imagePath.textContent = window.location.origin + '/' + image;
                         const imagePath = document.createElement('div');
                         imagePath.textContent = '/' + image;  // 只显示图片的相对路径
                         imagePath.className = 'image-path';  // 添加一个类以便于对其样式化
