@@ -59,7 +59,7 @@
     </head>
     <body>
         <h1>图片预览</h1>
-        <h3></h3>
+        <h3 id="domain"></h3>
         <div class="gallery"></div>
         <script>
         function fetchImages() {
@@ -113,7 +113,7 @@
                 });
         }
         fetchImages();
-        document.querySelector('h3').textContent = window.location.hostname;
+        document.querySelector('domain').textContent = window.location.hostname;
     </script>
     </body>
 </html>
