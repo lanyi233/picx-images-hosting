@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <title>管理LocalStorage</title>
+    <script>
+        // 显示当前LocalStorage数据
+        function displayLocalStorage() {
+            var display = document.getElementById('localStorageDisplay');
+            display.innerHTML = "";
+            for (var i = 0; i < localStorage.length; i++){
+                var key = localStorage.key(i);
+                var value = localStorage.getItem(key);
+                display.innerHTML += key + " : " + value + "<button onclick='deleteItem(""+key+"")'>删除</button><br>";
+            }
+        }
+
+        // 添加新项到LocalStorage
+        function addItem() {
+            var key = document.getElementById('key').value;
+            var value = document.getElementById('value').value;
+            localStorage.setItem(key, value);
+            displayLocalStorage();
+        }
+
+        // 从LocalStorage中删除项
+        function deleteItem(key) {
+            localStorage.removeItem(key);
+            displayLocalStorage();
+        }
+
+        // 清空LocalStorage
+        function clearLocalStorage() {
+            if(confirm('确定要清空所有LocalStorage数据吗？')) {
+                localStorage.clear();
+                displayLocalStorage();
+            }
+        }
+
+        // 页面加载完成后，显示LocalStorage
+        window.onload = function() {
+            displayLocalStorage();
+        };
+    </script>
+</head>
+<body>
+    <h1>管理LocalStorage</h1>
+
+    <input type="text" id="key" placeholder="key">
+    <input type="text" id="value" placeholder="value">
+    <button onclick="addItem()">添加/更新项</button>
+    <button onclick="clearLocalStorage()">清空LocalStorage</button>
+
+    <hr>
+
+    <div id="localStorageDisplay"></div>
+</body>
+</html>
