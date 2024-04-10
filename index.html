@@ -62,8 +62,6 @@
         <h3>domain</h3>
         <div class="gallery"></div>
         <script>
-        document.getElementById("domain").textContent = window.location.origin;
-        
         function fetchImages() {
             fetch('/list.json')
                 .then(response => response.json())
