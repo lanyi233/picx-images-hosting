@@ -28,6 +28,12 @@
             max-width: 200px;
             border-radius: 5px;
         }
+        .image-path {
+            text-align: left; /* 左对齐 */
+            color: #666; /* 字体颜色 */
+            font-size: 12px; /* 字体大小 */
+            padding: 4px 0; /* 上下间距留白 */
+        }
         button {
             background-color: #00000000;
             color: #000000;
@@ -57,6 +63,8 @@
                     const gallery = document.querySelector('.gallery');
                     gallery.innerHTML = ''; // 清空画廊
                     images.forEach(image => {
+                        const imagePath = document.createElement('div');
+                        imagePath.textContent = window.location.origin + '/' + image;
                         const container = document.createElement('div');
                         container.className = 'image-container';
                         const img = document.createElement('img');
@@ -87,6 +95,7 @@
                         };
                         container.appendChild(img);
                         container.appendChild(copyButton);
+                        container.appendChild(imagePath);
                         container.appendChild(downloadButton);
                         gallery.appendChild(container);
                     });
