@@ -28,16 +28,6 @@
             max-width: 200px;
             border-radius: 5px;
         }
-        .image-path {
-            text-align: left; /* 左对齐 */
-            color: #666; /* 字体颜色 */
-            font-size: 10px; /* 字体大小 */
-            padding: 4px 0; /* 添加一些上下间距 */
-            overflow: hidden; /* 如有必要，隐藏过长的文本 */
-            text-overflow: ellipsis; /* 使用省略号表示文本溢出 */
-            white-space: nowrap; /* 不允许文本换行 */
-            max-width: 200px; /* 设置一个最大宽度 */
-        }
         button {
             background-color: #00000000;
             color: #000000;
@@ -68,9 +58,7 @@
                     gallery.innerHTML = ''; // 清空画廊
                     images.forEach(image => {
                         const imagePath = document.createElement('div');
-                        const imagePath = document.createElement('div');
-                        imagePath.textContent = '/' + image;  // 只显示图片的相对路径
-                        imagePath.className = 'image-path';  // 添加一个类以便于对其样式化
+                        imagePath.textContent = '/' + image; 
                         const container = document.createElement('div');
                         container.className = 'image-container';
                         const img = document.createElement('img');
@@ -101,7 +89,6 @@
                         };
                         container.appendChild(img);
                         container.appendChild(copyButton);
-                        container.appendChild(imagePath);
                         container.appendChild(downloadButton);
                         gallery.appendChild(container);
                     });
