@@ -61,7 +61,8 @@
         <h1>图片预览</h1>
         <h3 id="domain"></h3>
         <div class="gallery"></div>
-        <script>
+        <script type="text/javascript" src="https://cache.ip138.com/tool/lib/punycode.js"></script>
+        <script type="text/javascript">
         function fetchImages() {
             fetch('/list.json')
                 .then(response => response.json())
@@ -112,29 +113,18 @@
                     console.error('加载图片列表发生错误:', error);
                 });
         }
-        document.addEventListener('DOMContentLoaded', function() {
-                var domain = window.location.hostname;
-                // 检测域名是否包含“xn--”序列
-                if (domain.indexOf('xn--') > -1) {
-                    // 这个函数尝试将ASCII转换成Unicode
-                    // 若在你的环境中有punycode.js库可用，可以使用它进行转码
-                    function convertPunycodeToUnicode(domain) {
-                        try {
-                            // 可以使用浏览器的内置API进行转换
-                            return decodeURI(domain);
-                        } catch(e) {
-                            console.error("域名转换错误:", e);
-                            return domain; // 转换失败时，返回原ASCII域名
-                        }
-                    }
-                    domain = convertPunycodeToUnicode(domain);
-                }
-                // 设置h3元素的文本内容为当前域名（转换后的Unicode域名）
-                document.getElementById('domain').textContent = domain;
-                // 调用fetchImages函数
-                fetchImages(); 
-        });
-        // fetchImages();
+        (function() {
+        var domain = window.location.hostname;
+
+        // 检测域名是否包含特殊字符"Punycode"
+        if (domain.indexOf('xn--') > -1) {
+            // 使用 punycode.js 库将ASCII编码的域名转换为Unicode
+            domain = punycode.toUnicode(domain);
+        }
+
+        // 设置 h3 元素显示Unicode域名
+        document.getElementById('domain').textContent = domain;
+        fetchImages();
     </script>
     </body>
 </html>
