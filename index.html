@@ -1,10 +1,10 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="zh-CN">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>picx</title>
-    <style>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>picx</title>
+        <style>
         body {
             font-family: 'Arial', sans-serif;
             background-color: #f7f7f7;
@@ -45,12 +45,11 @@
             background-color: #0056b3;
         }
     </style>
-</head>
-<body>
-    <h1>图片预览</h1>
-    <div class="gallery"></div>
-
-    <script>
+    </head>
+    <body>
+        <h1>图片预览</h1>
+        <div class="gallery"></div>
+        <script>
     function fetchImages() {
         fetch('/list.json')
             .then(response => response.json())
@@ -64,7 +63,9 @@
                     // 使用当前域名和路径
                     img.src = window.location.origin + '/' + image;
                     const button = document.createElement('button');
-                    button.innerText = 'Copy';
+                    const icon = document.createElement('img'); // 创建图标元素
+                    icon.src = '/icon/copy.svg'; // 设置图标路径
+                    button.appendChild(icon); // 把图标添加到按钮中
                     button.onclick = function() {
                         navigator.clipboard.writeText(window.location.origin + '/' + image).then(() => {
                             alert('链接已复制: ' + window.location.origin + '/' + image);
@@ -82,5 +83,5 @@
     
     fetchImages(); // 页面加载时运行
     </script>
-</body>
+    </body>
 </html>
