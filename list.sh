@@ -1,1 +1,1 @@
-find . -type f \( -iname "*.jpg" -o -iname "*.png" -o -iname "*.gif" -o -iname "*.svg" \) | sed 's|^./||' | jq -R . | jq -s . > list.json
+find . -type f \( -iname "*.jpg" -o -iname "*.png" -o -iname "*.gif" -o -iname "*.svg" -o -iname "*.webp" \) | sed 's|^./||' | jq -R . | jq -s . > list.json
