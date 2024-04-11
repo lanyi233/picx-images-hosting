@@ -109,16 +109,35 @@
                         const imagePath = document.createElement('div');
                         imagePath.textContent = image;  // 只显示图片的相对路径
                         imagePath.className = 'image-path';
-                        // 复制按钮
+                        // 普通复制按钮
                         const copyButton = document.createElement('button');
-                        const copyIcon = document.createElement('img'); // 创建图标元素 for copy
-                        copyIcon.src = '/icon/copy_2.svg'; // 设置图标路径
-                        copyButton.appendChild(copyIcon); // 把图标添加到复制按钮中
+                        copyButton.textContent = '复制链接'; // 按钮文本
                         copyButton.onclick = function() {
-                            navigator.clipboard.writeText(img.src).then(() => {
-                                alert('链接已复制: ' + img.src);
+                          navigator.clipboard.writeText(img.src).then(() => {
+                              alert('链接已复制: ' + img.src);
+                          });
+                        };
+                        
+                        // Markdown复制按钮
+                        const markdownCopyButton = document.createElement('button');
+                        markdownCopyButton.textContent = '复制Markdown'; // 按钮文本
+                        markdownCopyButton.onclick = function() {
+                            var markdownText = '[' + imagePath.textContent + '](' + img.src + ') : ' + img.src + '';
+                            navigator.clipboard.writeText(markdownText).then(() => {
+                                alert('Markdown链接已复制: ' + markdownText);
                             });
                         };
+
+                        // 添加图标到普通复制按钮（可选）
+                        const copyIcon = document.createElement('img');
+                        copyIcon.src = '/icon/copy_2.svg';
+                        copyButton.appendChild(copyIcon);
+                        
+                        // 添加图标到Markdown复制按钮（可选）
+                        const markdownCopyIcon = document.createElement('img');
+                        markdownCopyIcon.src = '/icon/copy.svg'; // 假设您有一个markdown图标
+                        markdownCopyButton.appendChild(markdownCopyIcon);
+
                         // 下载按钮
                         // const downloadButton = document.createElement('button');
                         // const downloadIcon = document.createElement('img'); // 创建图标元素 for download
@@ -134,8 +153,9 @@
                         // };
                         // 将元素添加到 container 中
                         container.appendChild(img);
-                        container.appendChild(imagePath); // 添加图片路径
-                        container.appendChild(copyButton);
+                        container.appendChild(imagePath); //图片路径
+                        container.appendChild(copyButton); //复制按钮
+                        container.appendChild(markdownCopyButton); //markdown v2 复制按钮
                         // container.appendChild(downloadButton);
                         gallery.appendChild(container);
                     });
