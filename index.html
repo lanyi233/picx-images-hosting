@@ -57,6 +57,22 @@
                 overflow: hidden;
                 text-overflow: ellipsis;
             }
+            .copy-button {
+              background-color: #00000000;
+              color: #000000;
+              border: none;
+              padding: 10px 20px;
+              text-align: center;
+              text-decoration: none;
+              font-size: 14px;
+              cursor: pointer;
+              border-radius: 5px;
+              transition: background-color 0.3s;
+            }
+            .copy-button:hover {
+              background-color: #0056b3;
+              color: #ffffff;
+            }
             button {
                 position: absolute; /* 绝对定位 */
                 bottom: 10px; /* 底部位置 */
@@ -111,7 +127,8 @@
                         imagePath.className = 'image-path';
                         // 普通复制按钮
                         const copyButton = document.createElement('button');
-                        copyButton.textContent = '复制链接'; // 按钮文本
+                        markdownCopyButton.className = 'copy-button';
+                        copyButton.textContent = ''; // 按钮文本
                         copyButton.onclick = function() {
                           navigator.clipboard.writeText(img.src).then(() => {
                               alert('链接已复制: ' + img.src);
@@ -120,7 +137,8 @@
                         
                         // Markdown复制按钮
                         const markdownCopyButton = document.createElement('button');
-                        markdownCopyButton.textContent = '复制Markdown'; // 按钮文本
+                        markdownCopyButton.className = 'copy-button';
+                        markdownCopyButton.textContent = ''; // 按钮文本
                         markdownCopyButton.onclick = function() {
                             var markdownText = '[' + imagePath.textContent + '](' + img.src + ') : ' + img.src + '';
                             navigator.clipboard.writeText(markdownText).then(() => {
