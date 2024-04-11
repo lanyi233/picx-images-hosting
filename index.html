@@ -57,22 +57,6 @@
                 overflow: hidden;
                 text-overflow: ellipsis;
             }
-            .copy-button {
-              background-color: #00000000;
-              color: #000000;
-              border: none;
-              padding: 10px 20px;
-              text-align: center;
-              text-decoration: none;
-              font-size: 14px;
-              cursor: pointer;
-              border-radius: 5px;
-              transition: background-color 0.3s;
-            }
-            .copy-button:hover {
-              background-color: #0056b3;
-              color: #ffffff;
-            }
             button {
                 position: absolute; /* 绝对定位 */
                 bottom: 10px; /* 底部位置 */
@@ -125,44 +109,16 @@
                         const imagePath = document.createElement('div');
                         imagePath.textContent = image;  // 只显示图片的相对路径
                         imagePath.className = 'image-path';
-                        
-                        // 普通复制按钮
+                        // 复制按钮
                         const copyButton = document.createElement('button');
-                        copyButton.className = 'copy-button';
-                        const copyIcon = document.createElement('img');
-                        copyIcon.src = '/icon/copy_2.svg';
-                        copyIcon.alt = 'Copy';
-                        copyButton.appendChild(copyIcon);
+                        const copyIcon = document.createElement('img'); // 创建图标元素 for copy
+                        copyIcon.src = '/icon/copy_2.svg'; // 设置图标路径
+                        copyButton.appendChild(copyIcon); // 把图标添加到复制按钮中
                         copyButton.onclick = function() {
-                          navigator.clipboard.writeText(img.src).then(() => {
-                            alert('链接已复制: ' + img.src);
-                          });
+                            navigator.clipboard.writeText(img.src).then(() => {
+                                alert('链接已复制: ' + img.src);
+                            });
                         };
-                        
-                        // Markdown复制按钮
-                        // const markdownCopyButton = document.createElement('button');
-                        // markdownCopyButton.className = 'copy-button';
-                        // const markdownCopyIcon = document.createElement('img');
-                        // markdownCopyIcon.src = '/icon/copy.svg';
-                        // markdownCopyIcon.alt = 'Markdown';
-                        // markdownCopyButton.appendChild(markdownCopyIcon);
-                        // markdownCopyButton.onclick = function() {
-                          // var markdownText = '[' + imagePath.textContent + '](' + img.src + ') : ' + img.src + '';
-                          // navigator.clipboard.writeText(markdownText).then(() => {
-                            // alert('Markdown格式已复制: ' + markdownText);
-                          // });
-                        // };
-
-                        // 添加图标到普通复制按钮（可选）
-                        const copyIcon = document.createElement('img');
-                        copyIcon.src = '/icon/copy_2.svg';
-                        copyButton.appendChild(copyIcon);
-                        
-                        // 添加图标到Markdown复制按钮（可选）
-                        // const markdownCopyIcon = document.createElement('img');
-                        // markdownCopyIcon.src = '/icon/copy.svg';
-                        // markdownCopyButton.appendChild(markdownCopyIcon);
-
                         // 下载按钮
                         // const downloadButton = document.createElement('button');
                         // const downloadIcon = document.createElement('img'); // 创建图标元素 for download
@@ -178,9 +134,8 @@
                         // };
                         // 将元素添加到 container 中
                         container.appendChild(img);
-                        container.appendChild(imagePath); //图片路径
-                        container.appendChild(copyButton); //复制按钮
-                        container.appendChild(markdownCopyButton); //markdown v2 复制按钮
+                        container.appendChild(imagePath); // 添加图片路径
+                        container.appendChild(copyButton);
                         // container.appendChild(downloadButton);
                         gallery.appendChild(container);
                     });
