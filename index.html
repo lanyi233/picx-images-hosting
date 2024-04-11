@@ -125,25 +125,32 @@
                         const imagePath = document.createElement('div');
                         imagePath.textContent = image;  // 只显示图片的相对路径
                         imagePath.className = 'image-path';
+                        
                         // 普通复制按钮
                         const copyButton = document.createElement('button');
-                        markdownCopyButton.className = 'copy-button';
-                        copyButton.textContent = ''; // 按钮文本
+                        copyButton.className = 'copy-button';
+                        const copyIcon = document.createElement('img');
+                        copyIcon.src = '/icon/copy_2.svg';
+                        copyIcon.alt = 'Copy';
+                        copyButton.appendChild(copyIcon);
                         copyButton.onclick = function() {
                           navigator.clipboard.writeText(img.src).then(() => {
-                              alert('链接已复制: ' + img.src);
+                            alert('链接已复制: ' + img.src);
                           });
                         };
                         
                         // Markdown复制按钮
                         const markdownCopyButton = document.createElement('button');
                         markdownCopyButton.className = 'copy-button';
-                        markdownCopyButton.textContent = ''; // 按钮文本
+                        const markdownCopyIcon = document.createElement('img');
+                        markdownCopyIcon.src = '/icon/copy.svg';
+                        markdownCopyIcon.alt = 'Markdown';
+                        markdownCopyButton.appendChild(markdownCopyIcon);
                         markdownCopyButton.onclick = function() {
-                            var markdownText = '[' + imagePath.textContent + '](' + img.src + ') : ' + img.src + '';
-                            navigator.clipboard.writeText(markdownText).then(() => {
-                                alert('Markdown链接已复制: ' + markdownText);
-                            });
+                          var markdownText = '[' + imagePath.textContent + '](' + img.src + ') : ' + img.src + '';
+                          navigator.clipboard.writeText(markdownText).then(() => {
+                            alert('Markdown格式已复制: ' + markdownText);
+                          });
                         };
 
                         // 添加图标到普通复制按钮（可选）
