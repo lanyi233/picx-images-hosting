@@ -140,18 +140,18 @@
                         };
                         
                         // Markdown复制按钮
-                        const markdownCopyButton = document.createElement('button');
-                        markdownCopyButton.className = 'copy-button';
-                        const markdownCopyIcon = document.createElement('img');
-                        markdownCopyIcon.src = '/icon/copy.svg';
-                        markdownCopyIcon.alt = 'Markdown';
-                        markdownCopyButton.appendChild(markdownCopyIcon);
-                        markdownCopyButton.onclick = function() {
-                          var markdownText = '[' + imagePath.textContent + '](' + img.src + ') : ' + img.src + '';
-                          navigator.clipboard.writeText(markdownText).then(() => {
-                            alert('Markdown格式已复制: ' + markdownText);
-                          });
-                        };
+                        // const markdownCopyButton = document.createElement('button');
+                        // markdownCopyButton.className = 'copy-button';
+                        // const markdownCopyIcon = document.createElement('img');
+                        // markdownCopyIcon.src = '/icon/copy.svg';
+                        // markdownCopyIcon.alt = 'Markdown';
+                        // markdownCopyButton.appendChild(markdownCopyIcon);
+                        // markdownCopyButton.onclick = function() {
+                          // var markdownText = '[' + imagePath.textContent + '](' + img.src + ') : ' + img.src + '';
+                          // navigator.clipboard.writeText(markdownText).then(() => {
+                            // alert('Markdown格式已复制: ' + markdownText);
+                          // });
+                        // };
 
                         // 添加图标到普通复制按钮（可选）
                         const copyIcon = document.createElement('img');
@@ -159,9 +159,9 @@
                         copyButton.appendChild(copyIcon);
                         
                         // 添加图标到Markdown复制按钮（可选）
-                        const markdownCopyIcon = document.createElement('img');
-                        markdownCopyIcon.src = '/icon/copy.svg'; // 假设您有一个markdown图标
-                        markdownCopyButton.appendChild(markdownCopyIcon);
+                        // const markdownCopyIcon = document.createElement('img');
+                        // markdownCopyIcon.src = '/icon/copy.svg';
+                        // markdownCopyButton.appendChild(markdownCopyIcon);
 
                         // 下载按钮
                         // const downloadButton = document.createElement('button');
