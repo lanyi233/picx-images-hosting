@@ -86,16 +86,99 @@
                     width: auto; /* 小屏幕时图片包装器宽度自适应 */
                 }
             }
+            
+            #telegram-post-widget {
+              position: fixed;
+              top: 10px;
+              left: 10px;
+              width: 300px; /* 或者你希望的宽度 */
+              height: auto; 
+              z-index: 1000;
+              opacity: 0.8;
+              display: none; /* 默认不显示，JavaScript会处理 */
+            }
+            
+            #comments-widget-button {
+              position: fixed;
+              bottom: 10px;
+              right: 10px;
+              z-index: 1000;
+              cursor: pointer;
+            }
+            
+            #comments-widget {
+              position: fixed;
+              top: 0;
+              left: 0;
+              width: 100%;
+              height: 100%;
+              z-index: 999;
+              display: none; /* 默认不显示，JavaScript会处理 */
+            }
         </style>
     </head>
     <body>
         <h1>图片预览</h1>
         <h5>Ciallo～(∠・ω< )⌒☆.</h5>
         <h3 id="domain"></h3>
-        <script async src="https://telegram.org/js/telegram-widget.js?22" data-telegram-post="lanyi233_Channel/7" data-width="80%"></script>
-<script async src="https://comments.app/js/widget.js?3" data-comments-app-website="MQaan93J" data-limit="10" data-dislikes="1" data-outlined="1"></script>
+        <div id="telegram-post-widget">
+  <script async src="https://telegram.org/js/telegram-widget.js?22" data-telegram-post="lanyi233_Channel/7" data-width="100%"></script>
+        <div id="comments-widget-button">评论</div>
+<div id="comments-widget">
+  <script async src="https://comments.app/js/widget.js?3" data-comments-app-website="MQaan93J" data-limit="10" data-dislikes="1" data-outlined="1"></script>
+</div>
+</div>
         <div class="gallery"></div>
         <script type="text/javascript" src="/r/punycode.js"></script>
+        <script type="text/javascript">
+        document.addEventListener("DOMContentLoaded", function() {
+          var tgWidget = document.getElementById('telegram-post-widget');
+          
+          // 显示Telegram小部件
+          tgWidget.style.display = 'block';
+        
+          // 设置10秒后自动消失的定时器
+          var timeout = setTimeout(function() {
+            tgWidget.style.display = 'none';
+          }, 10000);
+        
+          // 如果有交互则暂停倒计时
+          tgWidget.addEventListener('mouseenter', function() {
+            clearTimeout(timeout);
+          });
+          tgWidget.addEventListener('mouseleave', function() {
+            tgWidget.style.display = 'none';
+          });
+        });
+        </script>
+        <script type="text/javascript">
+        document.addEventListener("DOMContentLoaded", function() {
+          var commentsButton = document.getElementById('comments-widget-button');
+          var commentsWidget = document.getElementById('comments-widget');
+        
+          commentsButton.onclick = function() {
+            commentsWidget.style.display = 'block';
+            commentsButton.innerText = 'X';
+            commentsButton.style.top = '10px';
+            commentsButton.style.right = 'auto';
+            commentsButton.style.bottom = 'auto';
+            commentsButton.style.left = '10px';
+          };
+        
+          commentsButton.addEventListener('click', function() {
+            if(commentsWidget.style.display === 'block') {
+              commentsWidget.style.display = 'none';
+              commentsButton.innerText = '评论';
+              commentsButton.style.top = 'auto';
+              commentsButton.style.right = '10px';
+              commentsButton.style.bottom = '10px';
+              commentsButton.style.left = 'auto';
+            } else {
+              commentsWidget.style.display = 'block';
+            }
+          });
+        });
+        </script>
         <script type="text/javascript">
         function fetchImages() {
             fetch('/list.json')
