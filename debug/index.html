@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Picx</title>
+        <style>
+            body {
+                font-family: 'Arial', sans-serif;
+                background-color: #f7f7f7;
+                text-align: center;
+                padding-top: 50px;
+                color: #333;
+            }
+            .gallery {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                margin: -10px; /* 用负值抵消容器的margin，让容器紧密排布 */
+            }
+            .image-container {
+                position: relative; /* 相对定位 */
+                background: #fff;
+                box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+                border-radius: 10px;
+                margin: 10px; /* 边距 */
+                flex-basis: calc(33.333% - 20px); /* 弹性基准值，减掉margin的值计算 */
+                max-width: 550px; /* 最大宽度 */
+                display: flex; /* 使用flex布局 */
+                align-items: center; /* 垂直居中 */
+                overflow: hidden; /* 隐藏溢出内容 */
+            }
+            .image-wrapper {
+                width: 200px; /* 图片包装器宽度 */
+                height: 200px; /* 图片包装器高度 */
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+            img {
+                max-width: 80%; /* 图片最大宽度 */
+                max-height: 80%; /* 图片最大高度 */
+                object-fit: contain;
+                margin-right: auto; /* 将图片推到左边 */
+                margin-left: 20px; /* 图片左侧外边距 */
+            }
+            .image-path {
+                position: absolute; /* 绝对定位 */
+                top: 10px; /* 顶部位置 */
+                right: 10px; /* 右侧位置 */
+                color: #666;
+                font-size: 10px;
+                background: rgba(255, 255, 255, 0.7); /* 背景半透明 */
+                padding: 2px 8px;
+                border-radius: 5px;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+            button {
+                position: absolute; /* 绝对定位 */
+                bottom: 10px; /* 底部位置 */
+                right: 10px; /* 右侧位置 */
+                background-color: #00000000;
+                color: #000000;
+                border: none;
+                padding: 10px 20px;
+                text-align: center;
+                text-decoration: none;
+                font-size: 14px;
+                cursor: pointer;
+                border-radius: 5px;
+                transition: background-color 0.3s;
+            }
+            button:hover {
+                background-color: #0056b3;
+                color: #ffffff;
+            }
+        
+            /* 媒体查询 */
+            @media (max-width: 600px) {
+                .image-container {
+                    flex-basis: 100%; /* 小屏幕时容器占满全宽 */
+                }
+                .image-wrapper {
+                    width: auto; /* 小屏幕时图片包装器宽度自适应 */
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <h1>图片预览</h1>
+        <h5>Ciallo～(∠・ω< )⌒☆.</h5>
+        <script async src="https://telegram.org/js/telegram-widget.js?22" data-telegram-post="lanyi233_Channel/7" data-width="80%"></script>
+<script async src="https://comments.app/js/widget.js?3" data-comments-app-website="MQaan93J" data-limit="10" data-dislikes="1" data-outlined="1"></script>
+        <h3 id="domain"></h3>
+        <div class="gallery"></div>
+        <script type="text/javascript" src="/r/punycode.js"></script>
+        <script type="text/javascript">
+        function fetchImages() {
+            fetch('/list.json')
+                .then(response => response.json())
+                .then(images => {
+                    const gallery = document.querySelector('.gallery');
+                    gallery.innerHTML = ''; // 清空画廊
+                    images.forEach(image => {
+                        const container = document.createElement('div');
+                        container.className = 'image-container';
+                        const img = document.createElement('img');
+                        img.src = window.location.origin + '/' + image;
+                        // 图片路径的文本显示
+                        const imagePath = document.createElement('div');
+                        imagePath.textContent = image;  // 只显示图片的相对路径
+                        imagePath.className = 'image-path';
+                        // 复制按钮
+                        const copyButton = document.createElement('button');
+                        const copyIcon = document.createElement('img'); // 创建图标元素 for copy
+                        copyIcon.src = '/icon/copy_2.svg'; // 设置图标路径
+                        copyButton.appendChild(copyIcon); // 把图标添加到复制按钮中
+                        copyButton.onclick = function() {
+                            navigator.clipboard.writeText(img.src).then(() => {
+                                alert('链接已复制: ' + img.src);
+                            });
+                        };
+                        // 下载按钮
+                        // const downloadButton = document.createElement('button');
+                        // const downloadIcon = document.createElement('img'); // 创建图标元素 for download
+                        // downloadIcon.src = '/icon/download.svg'; // 设置下载图标路径
+                        // downloadButton.appendChild(downloadIcon); // 把图标添加到下载按钮中
+                        // downloadButton.onclick = function() {
+                            // const link = document.createElement('div');
+                            // link.href = img.src;
+                            // link.download = '';
+                            // document.body.appendChild(link);
+                            // link.click();
+                            // document.body.removeChild(link);
+                        // };
+                        // 将元素添加到 container 中
+                        container.appendChild(img);
+                        container.appendChild(imagePath); // 添加图片路径
+                        container.appendChild(copyButton);
+                        // container.appendChild(downloadButton);
+                        gallery.appendChild(container);
+                    });
+                })
+                .catch(error => {
+                    console.error('加载图片列表发生错误:', error);
+                });
+        }
+        (function() {
+        var asciiDomain = window.location.hostname;
+        
+        // 判断域名是否是punycode编码
+        if (asciiDomain.indexOf('xn--') !== -1) {
+            // 转换punycode到unicode
+            var unicodeDomain = punycode.toUnicode(asciiDomain);
+            // 将转换后的unicode域名显示在页面上
+            document.getElementById('domain').textContent = unicodeDomain;
+        } else {
+            // 如果域名不含特殊字符，则直接显示
+            document.getElementById('domain').textContent = asciiDomain;
+        }
+    })();
+        fetchImages();
+    </script>
+    <script>
+    window.onload = function() {
+        // 获取cookie
+        function getCookie(name) {
+            var cookieArr = document.cookie.split(';');
+            for(var i = 0; i < cookieArr.length; i++) {
+                var cookiePair = cookieArr[i].split('=');
+                if(name == cookiePair[0].trim()) {
+                    return decodeURIComponent(cookiePair[1]);
+                }
+            }
+            return null;
+        }
+
+        // 设置cookie
+        function setCookie(name, value, days) {
+            var expires = "";
+            if (days) {
+                var date = new Date();
+                date.setTime(date.getTime() + (days*24*60*60*1000));
+                expires = "; expires=" + date.toUTCString();
+            }
+            document.cookie = name + "=" + (value || "")  + expires + "; path=/";
+        }
+
+        // 检查cat_view值，并增加其值
+        var catView = getCookie('cat_view');
+        catView = catView ? parseInt(catView) + 1 : 1;
+        setCookie('cat_view', catView, 114514);
+    }
+    </script>
+    </body>
+</html>
+
+<!-- 大部分代码由chatgpt编写（ -->
