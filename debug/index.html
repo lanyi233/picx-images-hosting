@@ -97,24 +97,6 @@
               opacity: 0.8;
               display: none; /* 默认不显示，JavaScript会处理 */
             }
-            
-            #comments-widget-button {
-              position: fixed;
-              bottom: 10px;
-              right: 10px;
-              z-index: 1000;
-              cursor: pointer;
-            }
-            
-            #comments-widget {
-              position: fixed;
-              top: 0;
-              left: 0;
-              width: 100%;
-              height: 100%;
-              z-index: 999;
-              display: none; /* 默认不显示，JavaScript会处理 */
-            }
         </style>
     </head>
     <body>
@@ -123,11 +105,7 @@
         <h3 id="domain"></h3>
         <div id="telegram-post-widget">
   <script async src="https://telegram.org/js/telegram-widget.js?22" data-telegram-post="lanyi233_Channel/7" data-width="100%"></script>
-        <div id="comments-widget-button">评论</div>
-<div id="comments-widget">
-  <script async src="https://comments.app/js/widget.js?3" data-comments-app-website="MQaan93J" data-limit="10" data-dislikes="1" data-outlined="1"></script>
-</div>
-</div>
+        </div>
         <div class="gallery"></div>
         <script type="text/javascript" src="/r/punycode.js"></script>
         <script type="text/javascript">
@@ -148,34 +126,6 @@
           });
           tgWidget.addEventListener('mouseleave', function() {
             tgWidget.style.display = 'none';
-          });
-        });
-        </script>
-        <script type="text/javascript">
-        document.addEventListener("DOMContentLoaded", function() {
-          var commentsButton = document.getElementById('comments-widget-button');
-          var commentsWidget = document.getElementById('comments-widget');
-        
-          commentsButton.onclick = function() {
-            commentsWidget.style.display = 'block';
-            commentsButton.innerText = 'X';
-            commentsButton.style.top = '10px';
-            commentsButton.style.right = 'auto';
-            commentsButton.style.bottom = 'auto';
-            commentsButton.style.left = '10px';
-          };
-        
-          commentsButton.addEventListener('click', function() {
-            if(commentsWidget.style.display === 'block') {
-              commentsWidget.style.display = 'none';
-              commentsButton.innerText = '评论';
-              commentsButton.style.top = 'auto';
-              commentsButton.style.right = '10px';
-              commentsButton.style.bottom = '10px';
-              commentsButton.style.left = 'auto';
-            } else {
-              commentsWidget.style.display = 'block';
-            }
           });
         });
         </script>
