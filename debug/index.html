@@ -116,16 +116,19 @@
           tgWidget.style.display = 'block';
         
           // 设置10秒后自动消失的定时器
-          var timeout = setTimeout(function() {
+          var hideWidget = function() {
             tgWidget.style.display = 'none';
-          }, 10000);
+          };
+          var timeout = setTimeout(hideWidget, 10000);
         
-          // 如果有交互则暂停倒计时
+          // 如果鼠标悬停在小部件上，暂停倒计时
           tgWidget.addEventListener('mouseenter', function() {
             clearTimeout(timeout);
           });
+        
+          // 如果鼠标离开小部件，10秒后隐藏小部件
           tgWidget.addEventListener('mouseleave', function() {
-            tgWidget.style.display = 'none';
+            timeout = setTimeout(hideWidget, 10000);
           });
         });
         </script>
