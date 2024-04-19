@@ -75,7 +75,8 @@
             button:hover {
                 background-color: #0056b3;
                 color: #ffffff;
-            
+            }
+        
             /* 媒体查询 */
             @media (max-width: 600px) {
                 .image-container {
@@ -137,7 +138,7 @@
         </script>
         <script type="text/javascript">
         function fetchImages() {
-            fetch('./list.json')
+            fetch('/list.json')
                 .then(response => response.json())
                 .then(images => {
                     const gallery = document.querySelector('.gallery');
